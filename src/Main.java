@@ -12,11 +12,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
         try {
+
+            ReaderFromFile readerFromFile = new ReaderFromFile();
             Scanner scanner = new Scanner(System.in);
             String filepath;
             Console.write("Введите имя файла:\n ~ ");
             filepath = scanner.nextLine();
-            Console.write(new StringBuilder().append("Программа работает с файлом \"").append(filepath).append("\"").toString());
+            //Console.write(new StringBuilder().append("Программа работает с файлом \"").append(filepath).append("\"").toString());
             WriterToFile.setFilename(filepath);
 
             Collection.setDateCreation(LocalDateTime.now());
@@ -24,7 +26,7 @@ public class Main {
             invoker.regist(new Clear(), new Exit(), new Help(), new History(), new Info(),
                     new Insert(), new Max_by_id(), new Remove_key(), new Replace_if_greater(), new Save(), new Show(),
                     new Update(), new Print_descending(), new Remove_any_by_category());
-            Console.write(Collection.fillCollection(ReaderFromFile.readFromFile(filepath)));
+            Console.write(Collection.fillCollection(readerFromFile.readFromFile(filepath)));
             while (true) {
                 String commandName = Console.read();
                 if (!commandName.equals(""))

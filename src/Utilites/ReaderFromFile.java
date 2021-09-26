@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class ReaderFromFile {
 
-    public static String readFromFile(String filename) throws FileNotFoundException {
+    public String readFromFile(String filename) throws FileNotFoundException {
         try {
             String data = "";
             File file = new File(filename);
@@ -15,6 +15,7 @@ public class ReaderFromFile {
                 data += scanner.nextLine().trim() + "\n";
             scanner.close();
             WriterToFile.setFilename(filename);
+            Console.write("Файл "+filename+" найден.");
             return data;
         } catch (FileNotFoundException | NullPointerException e) {
             while (filename == (null)) {
@@ -25,6 +26,7 @@ public class ReaderFromFile {
                     break;
                 }
             }
+            Console.write("Файл " +filename+ " не найден... \nСоздан новый файл  "+filename+".");
             return "";
         }
     }

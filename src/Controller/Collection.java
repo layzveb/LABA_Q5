@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class Collection {
-
+    //коллекция
     private static TreeMap<Integer, SpaceMarine> collection = new TreeMap<Integer, SpaceMarine>();
     private static LocalDateTime dateCreation;
 
@@ -94,7 +94,7 @@ public class Collection {
             } catch (Exception e) {
             }
         }
-        return (collection.size() == 0) ? "Создан новый файл.\nКоллекция пустая." : "Файл найден.\nКоллекция заполнена. Количество элементов: " + collection.size();
+        return (collection.size() == 0) ? "Коллекция пуста." : "Коллекция заполнена. Количество элементов: " + collection.size();
     }
 
 }
