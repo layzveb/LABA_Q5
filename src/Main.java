@@ -13,21 +13,15 @@ public class Main {
     public static void main(String[] args) throws IOException {
         try {
             Scanner scanner = new Scanner(System.in);
-            String filepath = System.getenv("collection");
-            if (filepath == null) {
-                Console.write("Вы не указали переменную окружения.");
-                filepath = "";
-                while (filepath.equals("")) {
-                    Console.write("Введите имя файла:\n~ ");
-                    filepath = scanner.nextLine();
-                }
-            } else {
-                Console.write(new StringBuilder().append("Программа работает с файлом \"").append(filepath).append("\", указанным в переменной окруженя \"collection\"").toString());
-            }
+            String filepath;
+            Console.write("Введите имя файла:\n ~ ");
+            filepath = scanner.nextLine();
+            Console.write(new StringBuilder().append("Программа работает с файлом \"").append(filepath).append("\"").toString());
             WriterToFile.setFilename(filepath);
+
             Collection.setDateCreation(LocalDateTime.now());
             Invoker invoker = new Invoker();
-            invoker.regist(new Clear(), new Execute_script(), new Exit(), new Help(), new History(), new Info(),
+            invoker.regist(new Clear(), new Exit(), new Help(), new History(), new Info(),
                     new Insert(), new Max_by_id(), new Remove_key(), new Replace_if_greater(), new Save(), new Show(),
                     new Update(), new Print_descending(), new Remove_any_by_category());
             Console.write(Collection.fillCollection(ReaderFromFile.readFromFile(filepath)));

@@ -18,7 +18,7 @@ public class Replace_if_greater implements CommandWithObject {
                 int arg = Integer.parseInt((String) args);
                 if (!Collection.isKeyFree((arg))) {
                     SpaceMarine newSpaceMarine = SpaceMarineGenerator.generate();
-                    if (Collection.getCollection().get(arg).compareTo(newSpaceMarine) < 0) { //--------------------------------------------
+                    if (Collection.getCollection().get(arg).compareTo(newSpaceMarine) < 0) {
                         newSpaceMarine.setId(arg);
                         Collection.update(arg, newSpaceMarine);
                         return "Космический корабль с id[" + arg + "] успешно заменен.";

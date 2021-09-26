@@ -12,7 +12,7 @@ public class SpaceMarineGenerator {
         SpaceMarine spaceMarine = null;
         try {
 
-            Scanner scanner = new Scanner(System.in);
+           // Scanner scanner = new Scanner(System.in);
             String name;
 
             do {

@@ -4,4 +4,5 @@ package Controller;
 
 //указывает что для команды нужно создание города(типа add, update)
 public interface CommandWithObject extends Commandable{
+
 }

@@ -12,7 +12,6 @@ public class Max_by_id implements CommandWithoutArg {
     public String execute(Object arg) {
         if (Collection.getSize() == 0) return ("Коллекция пустая.");
         else
-            //treemap автоматически сортирует по возрастанию ключа, поэтому достаточно просто достать крайний элемент
             return Collection.getCollection().lastEntry().getValue().toString();
 
     }

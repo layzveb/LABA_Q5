@@ -12,7 +12,7 @@ public class Remove_key implements Commandable {
     @Override
     public String execute(Object arg) {
         try {
-            if (Collection.getSize() == 0) return ("Коллекция итак пустая.");
+            if (Collection.getSize() == 0) return ("Коллекция и так пустая.");
             else {
                 for (Map.Entry<Integer, SpaceMarine> entry : Collection.getCollection().entrySet())
                     if (entry.getKey() == Integer.parseInt((String) arg)) {

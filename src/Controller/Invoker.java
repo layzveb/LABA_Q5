@@ -42,7 +42,6 @@ public class Invoker {
     }
 
     public  String executeCommand(String commandName) throws IOException {
-        commandName = commandName.replace(" *", "");
         String[] nameAndArgument = commandName.split(" ");
         if (!commandName.equals("")) {
             if (commands.get(nameAndArgument[0]) == null) {
