@@ -12,14 +12,10 @@ public class SpaceMarineGenerator {
         SpaceMarine spaceMarine = null;
         try {
 
-           // Scanner scanner = new Scanner(System.in);
             String name;
 
             do {
                 Console.write("Введите имя Space Marine:");
-
-//                Console.write("Введите имя Space Marine:");
-
                 name = Console.read();
             } while (name.isEmpty());
 
