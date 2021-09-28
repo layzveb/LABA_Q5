@@ -2,6 +2,7 @@ package Commands;
 
 import Controller.Collection;
 import Controller.CommandWithoutArg;
+import Exceptions.WrongCommandFormat;
 
 import java.text.CollationKey;
 

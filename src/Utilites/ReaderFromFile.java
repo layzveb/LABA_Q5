@@ -9,26 +9,41 @@ public class ReaderFromFile {
     public String readFromFile(String filename) throws FileNotFoundException {
         try {
             String data = "";
-            filename.trim();
+            filename = filename.trim();
+            String[] in = filename.split(" ");
+            StringBuilder filter = new StringBuilder();
+            for (String i : in) {
+                if (!i.equals("")) {
+                    filter.append(i).append(" ");
+                }
+            }
+            filename = filter.toString().trim();
             File file = new File(filename);
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine())
                 data += scanner.nextLine().trim() + "\n";
             scanner.close();
             WriterToFile.setFilename(filename);
-            Console.write("Файл "+filename+" найден.");
+            Console.write("Файл " + filename + " найден.");
             return data;
         } catch (FileNotFoundException | NullPointerException e) {
             while (filename.trim().equals("") || filename.equals(null)) {
-                Console.write(ColorEdit.RED_BOLD+"Вы не указали имя файла.\n"+ColorEdit.RESET+"Введите имя файла:");
+                Console.write(ColorEdit.RED_BOLD + "Вы не указали имя файла.\n" + ColorEdit.RESET + "Введите имя файла:");
                 String newFilename = Console.read();
                 if (!(newFilename.trim().equals(""))) {
-                    filename = newFilename.trim();
+                    String[] in = newFilename.trim().split(" ");
+                    StringBuilder filter = new StringBuilder();
+                    for (String i : in) {
+                        if (!i.equals("")) {
+                            filter.append(i).append(" ");
+                        }
+                    }
+                    filename = filter.toString().trim();
                     WriterToFile.setFilename(filename);
                     break;
                 }
             }
-            Console.write("Файл " +ColorEdit.CYAN_BOLD+filename+ColorEdit.RESET+ " не найден... \nСоздан новый файл "+ColorEdit.CYAN_BOLD+filename+ColorEdit.RESET+".");
+            Console.write("Файл " + ColorEdit.CYAN_BOLD + filename + ColorEdit.RESET + " не найден... \nСоздан новый файл " + ColorEdit.CYAN_BOLD + filename + ColorEdit.RESET + ".");
             return "";
         }
     }

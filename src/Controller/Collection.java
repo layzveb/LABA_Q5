@@ -67,11 +67,11 @@ public class Collection {
     public static String getInfo() {
         return new StringBuilder()
                 .append("\n꧁_______________________________________________________꧂")
-                .append("\n\uD80C\uDC6A                 Тип коллекции: ")
-                .append(ColorEdit.YELLOW_BOLD_BRIGHT).append("TreeMap").append(ColorEdit.RESET)
-                .append("\n           Количество элементов коллекции: ")
+                .append("\n               Тип коллекции: ")
+                .append(ColorEdit.YELLOW_BOLD_BRIGHT).append("TreeMap").append(ColorEdit.RESET).append("                   \uD80C\uDC6A")
+                .append("\n           Количество элементов коллекции: 21")
                 .append(ColorEdit.YELLOW_BOLD_BRIGHT).append(getSize()).append(ColorEdit.RESET)
-                .append("\n        Дата создания коллекции: ")
+                .append("\n         Дата создания коллекции: ")
                 .append(ColorEdit.YELLOW_BOLD_BRIGHT).append(getDateCreation()).append(ColorEdit.RESET)
                 .append("\n꧁_______________________________________________________꧂\n")
                 .toString();

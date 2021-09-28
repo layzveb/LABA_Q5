@@ -1,6 +1,7 @@
 import Commands.*;
 import Controller.Collection;
 import Controller.Invoker;
+import Utilites.ColorEdit;
 import Utilites.Console;
 import Utilites.ReaderFromFile;
 import Utilites.WriterToFile;
@@ -24,7 +25,7 @@ public class Main {
             filepath = scanner.nextLine();
             WriterToFile.setFilename(filepath);
 
-            Collection.setDateCreation(LocalDateTime.now().format(DateTimeFormatter.ofPattern("d-MM-y  H:m:s")));
+            Collection.setDateCreation(LocalDateTime.now().format(DateTimeFormatter.ofPattern("d-MM-y H:m:s")));
             Invoker invoker = new Invoker();
             invoker.regist(new Clear(), new Exit(), new Help(), new History(), new Info(),
                     new Insert(), new Max_by_id(), new Remove_key(), new Replace_if_greater(), new Save(), new Show(),

@@ -2,6 +2,7 @@ package Commands;
 
 import Controller.CommandWithoutArg;
 import Controller.Collection;
+import Exceptions.WrongCommandFormat;
 
 
 public class Info implements CommandWithoutArg {
