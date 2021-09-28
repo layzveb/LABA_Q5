@@ -24,9 +24,9 @@ public class Invoker {
 
     public static String history() {
         StringBuilder history = new StringBuilder();
-        Console.write("\n");
         for (String commandes : commandHistory) {
-            if (!commandes.equals(null)) history.append("  • ").append(commandes).append("; \n");
+            if (!commandes.equals(null))
+                history.append(ColorEdit.YELLOW_BOLD_BRIGHT).append("  • ").append(ColorEdit.RESET).append(commandes).append("; \n");
         }
         return history.toString();
     }

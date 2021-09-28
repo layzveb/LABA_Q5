@@ -4,6 +4,7 @@ import SpaceMarine.AstartesCategory;
 import SpaceMarine.Chapter;
 import SpaceMarine.Coordinates;
 import SpaceMarine.SpaceMarine;
+import Utilites.ColorEdit;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -11,7 +12,7 @@ import java.util.*;
 public class Collection {
     //коллекция
     private static TreeMap<Integer, SpaceMarine> collection = new TreeMap<Integer, SpaceMarine>();
-    private static LocalDateTime dateCreation;
+    private static String dateCreation;
 
     public static TreeMap<Integer, SpaceMarine> getCollection() {
         return collection;
@@ -21,11 +22,11 @@ public class Collection {
         Collection.collection = collection;
     }
 
-    public static LocalDateTime getDateCreation() {
+    public static String getDateCreation() {
         return dateCreation;
     }
 
-    public static void setDateCreation(LocalDateTime dateCreation) {
+    public static void setDateCreation(String dateCreation) {
         Collection.dateCreation = dateCreation;
     }
 
@@ -65,11 +66,14 @@ public class Collection {
 
     public static String getInfo() {
         return new StringBuilder()
-                .append("Тип коллекции: TreeMap;")
-                .append("\nКоличество элементов коллекции: ")
-                .append(getSize()).append(";")
-                .append("\nДата создания коллекции: ")
-                .append(getDateCreation()).append(".")
+                .append("\n꧁_______________________________________________________꧂")
+                .append("\n\uD80C\uDC6A                 Тип коллекции: ")
+                .append(ColorEdit.YELLOW_BOLD_BRIGHT).append("TreeMap").append(ColorEdit.RESET)
+                .append("\n           Количество элементов коллекции: ")
+                .append(ColorEdit.YELLOW_BOLD_BRIGHT).append(getSize()).append(ColorEdit.RESET)
+                .append("\n        Дата создания коллекции: ")
+                .append(ColorEdit.YELLOW_BOLD_BRIGHT).append(getDateCreation()).append(ColorEdit.RESET)
+                .append("\n꧁_______________________________________________________꧂\n")
                 .toString();
     }
 

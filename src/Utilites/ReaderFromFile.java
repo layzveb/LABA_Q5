@@ -9,6 +9,7 @@ public class ReaderFromFile {
     public String readFromFile(String filename) throws FileNotFoundException {
         try {
             String data = "";
+            filename.trim();
             File file = new File(filename);
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine())
@@ -18,15 +19,16 @@ public class ReaderFromFile {
             Console.write("Файл "+filename+" найден.");
             return data;
         } catch (FileNotFoundException | NullPointerException e) {
-            while (filename == (null)) {
-                System.out.println("Вы забыли указать имя файла. Укажите имя файла сейчас:");
+            while (filename.trim().equals("") || filename.equals(null)) {
+                Console.write(ColorEdit.RED_BOLD+"Вы не указали имя файла.\n"+ColorEdit.RESET+"Введите имя файла:");
                 String newFilename = Console.read();
-                if (!(newFilename.equals(""))) {
+                if (!(newFilename.trim().equals(""))) {
+                    filename = newFilename.trim();
                     WriterToFile.setFilename(filename);
                     break;
                 }
             }
-            Console.write("Файл " +filename+ " не найден... \nСоздан новый файл  "+filename+".");
+            Console.write("Файл " +ColorEdit.CYAN_BOLD+filename+ColorEdit.RESET+ " не найден... \nСоздан новый файл "+ColorEdit.CYAN_BOLD+filename+ColorEdit.RESET+".");
             return "";
         }
     }
