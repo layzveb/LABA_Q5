@@ -8,7 +8,12 @@ import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Map;
 
-public class Print_descending implements CommandWithoutArg {
+public class Print_descending extends AbstractCommand {
+
+    public Print_descending() {
+        super("print_descending", "вывод элементов коллекции в порядке убывания");
+    }
+
     @Override
     public String execute(Object o) throws IOException {
         if (Collection.getSize() == 0) return "Коллекция пустая";
@@ -20,10 +25,5 @@ public class Print_descending implements CommandWithoutArg {
             res += deque.pop() + "\n";
         }
         return res;
-    }
-
-    @Override
-    public String getName() {
-        return "print_descending";
     }
 }

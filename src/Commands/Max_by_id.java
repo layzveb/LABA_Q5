@@ -6,20 +6,23 @@ import Exceptions.WrongCommandFormat;
 
 import java.text.CollationKey;
 
-public class Max_by_id implements CommandWithoutArg {
-    String name = "max_by_id";
+public class Max_by_id extends AbstractCommand {
 
-    @Override
-    public String execute(Object arg) {
-        if (Collection.getSize() == 0) return ("Коллекция пустая.");
-        else
-            return Collection.getCollection().lastEntry().getValue().toString();
-
+    public Max_by_id() {
+        super("max_by_id", "вывести любой объект из коллекции, значение поля id которого является максимальным");
     }
 
     @Override
-    public String getName() {
-        return name;
+    public String execute(Object arg) {
+        try {
+            if (!arg.equals("")) {
+                if (Collection.getSize() == 0) return ("Коллекция пустая.");
+                else
+                    return Collection.getCollection().lastEntry().getValue().toString();
+            } else throw new WrongCommandFormat();
+        } catch (WrongCommandFormat e) {
+            return "Данной команде не нужен аргумент. Проверьте аргументацию\n";
+        }
     }
 }
 

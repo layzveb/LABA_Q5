@@ -27,18 +27,22 @@ public class Main {
 
             Collection.setDateCreation(LocalDateTime.now().format(DateTimeFormatter.ofPattern("d-MM-y H:m:s")));
             Invoker invoker = new Invoker();
-            invoker.regist(new Clear(), new Exit(), new Help(), new History(), new Info(),
+            invoker.regist(new Clear(), new Exit(), new Help(invoker), new History(invoker), new Info(),
                     new Insert(), new Max_by_id(), new Remove_key(), new Replace_if_greater(), new Save(), new Show(),
                     new Update(), new Print_descending(), new Remove_any_by_category());
             Console.write(Collection.fillCollection(readerFromFile.readFromFile(filepath)));
+
             while (true) {
-                String commandName = Console.read();
-                if (!commandName.equals(""))
-                    Console.write(invoker.executeCommand(commandName));
+                String input = Console.read();
+                if (!input.equals("")) {
+                    Console.write(invoker.executeCommand(input));
+                }else {
+                    Console.write(ColorEdit.RED_BOLD + "Вы не ввели команду..." + ColorEdit.RESET);
+                }
             }
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-            Console.write("Прерывание работы программы");
         }
     }
 }
+

@@ -7,8 +7,9 @@ import SpaceMarine.SpaceMarineGenerator;
 
 import java.util.InputMismatchException;
 
-public class Replace_if_greater implements CommandWithObject {
-    String name = "replace_if_greater";
+public class Replace_if_greater extends AbstractCommand {
+
+    public Replace_if_greater() {super("replace_if_greater [id]", "замена значения по ключу, если новое значение больше старого");}
 
     @Override
     public String execute(Object args) {
@@ -21,8 +22,8 @@ public class Replace_if_greater implements CommandWithObject {
                     if (Collection.getCollection().get(arg).compareTo(newSpaceMarine) < 0) {
                         newSpaceMarine.setId(arg);
                         Collection.update(arg, newSpaceMarine);
-                        return "Космический корабль с id[" + arg + "] успешно заменен.";
-                    } else return "Космический корабль с id[" + arg + "] не заменен.";
+                        return "Космический корабль с id [" + arg + "] успешно заменен.";
+                    } else return "Космический корабль с id [" + arg + "] не заменен.";
                 } else return "Космический корабль с указанным id не найдено.";
             }
         } catch (NumberFormatException | InputMismatchException e) {
@@ -31,13 +32,6 @@ public class Replace_if_greater implements CommandWithObject {
             return ("Неверно указаны данные.");
         }
     }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-
 }
 
 

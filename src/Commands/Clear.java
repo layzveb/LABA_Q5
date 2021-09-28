@@ -2,27 +2,27 @@ package Commands;
 
 import Controller.Collection;
 import Controller.CommandWithoutArg;
+import Exceptions.WrongCommandFormat;
+import Utilites.Console;
 
-public class Clear implements CommandWithoutArg {
-    String name = "clear";
-    String description = "очищает коллекцию";
+public class Clear extends AbstractCommand {
+
+    public Clear() {
+        super("clear", "очистить коллекцию");
+    }
 
     @Override
     public String execute(Object o) {
-        if (Collection.getSize() == 0) return ("Коллекция итак пустая.");
-        else {
-            Collection.clear();
-            return ("Коллекция очищена");
+        try {
+            if (o.equals("")) {
+                if (Collection.getSize() == 0) return ("Коллекция итак пустая.");
+                else {
+                    Collection.clear();
+                    return ("Коллекция очищена");
+                }
+            } else throw new WrongCommandFormat();
+        } catch (WrongCommandFormat e) {
+            return "Данной команде не нужен аргумент. Проверьте аргументацию\n";
         }
     }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-//    @Override
-//    public String toString() {return name + description;}
-//
-
 }

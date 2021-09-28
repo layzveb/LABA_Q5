@@ -13,12 +13,15 @@ public class WriterToFile {
         WriterToFile.filename = filename;
     }
 
-    public static void writeCollection(TreeMap<Integer, SpaceMarine> collection) throws FileNotFoundException {
+    public static void writeCollection(TreeMap<Integer, SpaceMarine> collection) {
         try {
+            if (filename.equals(null)) throw new FileNotFoundException();
             FileWriter fileWriter = new FileWriter(filename);
             for (Map.Entry<Integer, SpaceMarine> entry : collection.entrySet())
                 fileWriter.write(entry.getValue().getCSV() + "\n");
             fileWriter.close();
+        } catch (FileNotFoundException e) {
+            Console.write("файла для записи коллекции не найдено");
         } catch (IOException e) {
             e.printStackTrace();
         }

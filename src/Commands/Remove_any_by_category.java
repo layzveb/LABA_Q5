@@ -8,7 +8,10 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.Map;
 
-public class Remove_any_by_category implements Commandable {
+public class Remove_any_by_category extends AbstractCommand {
+
+    public Remove_any_by_category() {super("remove_any_by_category [category]", "удалить из коллекции один элемент, значение поля category которого эквивалентно заданному");}
+
     @Override
     public String execute(Object o) throws IOException {
         String sampleCategory = (String) o;
@@ -23,10 +26,5 @@ public class Remove_any_by_category implements Commandable {
         } catch (ClassCastException e) {
             return "Неверный аргумент команды.";
         }
-    }
-
-    @Override
-    public String getName() {
-        return "remove_any_by_category";
     }
 }

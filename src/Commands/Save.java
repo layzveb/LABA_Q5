@@ -5,20 +5,18 @@ import Controller.CommandWithoutArg;
 import Utilites.WriterToFile;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
-public class Save implements CommandWithoutArg {
-    String name = "save";
+public class Save extends AbstractCommand {
 
-    @Override
-    public String execute(Object o) throws FileNotFoundException {
-        WriterToFile.writeCollection(Collection.getCollection());
-        return "Коллекция успешно сохранена.";
+    public Save() {
+        super("save", "сохранение коллекции в файл");
     }
 
-
     @Override
-    public String getName() {
-        return name;
+    public String execute(Object o) throws IOException {
+        WriterToFile.writeCollection(Collection.getCollection());
+        return "Коллекция успешно сохранена.";
     }
 }
 

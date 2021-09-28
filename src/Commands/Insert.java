@@ -7,8 +7,11 @@ import SpaceMarine.SpaceMarineGenerator;
 
 import java.util.InputMismatchException;
 
-public class Insert implements CommandWithObject {
-    String name = "insert";
+public class Insert extends AbstractCommand {
+
+    public Insert() {
+        super("insert [id]", "добавить новый элемент с заданным ключом");
+    }
 
     @Override
     public String execute(Object arg) {
@@ -28,11 +31,5 @@ public class Insert implements CommandWithObject {
             return "Неверно указаны данные.";
         }
     }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
 }
 

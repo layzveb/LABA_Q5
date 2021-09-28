@@ -2,20 +2,25 @@ package Commands;
 
 import Controller.CommandWithoutArg;
 import Controller.Invoker;
+import Exceptions.WrongCommandFormat;
 
-public class History implements CommandWithoutArg {
-    String name = "history";
+public class History extends AbstractCommand {
+    private Invoker invoker;
 
-    @Override
-    public String execute(Object o) {
-
-    return Invoker.history();
-
+    public History(Invoker invoker) {
+        super("history", "вывод последних 8 команд (без их аргументов)");
+        this.invoker = invoker;
     }
 
     @Override
-    public String getName() {
-        return name;
+    public String execute(Object o) {
+        try {
+            if (o.equals("")) {
+        return invoker.history();
+            } else throw new WrongCommandFormat();
+        } catch (WrongCommandFormat e) {
+            return "Данной команде не нужен аргумент. Проверьте аргументацию\n";
+        }
     }
 }
 

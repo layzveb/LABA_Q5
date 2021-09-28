@@ -6,8 +6,11 @@ import SpaceMarine.SpaceMarine;
 
 import java.util.Map;
 
-public class Remove_key implements Commandable {
-    String name = "remove_key";
+public class Remove_key extends AbstractCommand {
+
+    public Remove_key() {
+        super("remove_key [id]", "удаление элемента из коллекции по его ключу");
+    }
 
     @Override
     public String execute(Object arg) {
@@ -24,11 +27,6 @@ public class Remove_key implements Commandable {
         } catch (Exception e) {
             return ("Аргумент команды должен быть типа \"int\"");
         }
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 }
 

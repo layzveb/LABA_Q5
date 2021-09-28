@@ -1,6 +1,9 @@
 package Controller;
 
 
+import Commands.AbstractCommand;
+import Exceptions.NoCommandException;
+import Utilites.ColorEdit;
 import Utilites.Console;
 
 import java.io.FileNotFoundException;
@@ -10,19 +13,15 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Invoker {
-    private static Map<String, Commandable> commands = new TreeMap<>();
+    private static Map<String, AbstractCommand> commands = new TreeMap<>();
     public static final int COMMAND_COMMANDHISTORY_SIZE = 8;
     private static ArrayDeque<String> commandHistory = new ArrayDeque<>(COMMAND_COMMANDHISTORY_SIZE);
 
-    public Commandable getCommand(String commandname) {
-        return commands.get(commandname);
-    }
-
-    public static void setCommands(Map<String, Commandable> commands) {
+    public static void setCommands(Map<String, AbstractCommand> commands) {
         Invoker.commands = commands;
     }
 
-    public static String history() {
+    public String history() {
         StringBuilder history = new StringBuilder();
         for (String commandes : commandHistory) {
             if (!commandes.equals(null))
@@ -31,17 +30,42 @@ public class Invoker {
         return history.toString();
     }
 
-    public void regist(Commandable... commands) {
-        for (Commandable command : commands)
-            Invoker.commands.put(command.getName(), command);
-
+    public void regist(AbstractCommand... commands) {
+        for (AbstractCommand command : commands)
+            Invoker.commands.put(command.getName().toUpperCase(), command);
     }
 
-    public static Map<String, Commandable> getCommands() {
+    public String getHelp() {
+        StringBuilder str = new StringBuilder();
+        for (Map.Entry<String, AbstractCommand> entry : commands.entrySet())
+            str.append(entry.getValue().toString()).append("\n");
+        return str.toString();
+    }
+
+    public static Map<String, AbstractCommand> getCommands() {
         return commands;
     }
 
-    public  String executeCommand(String commandName) throws IOException {
+    public String executeCommand(String input) {
+        String[] commandInput = (input.trim() + " ").split(" ", 2);
+        try {
+            String commandArg = commandInput[1].trim();
+            String commandName = commandInput[0];
+            AbstractCommand ans = commands.get(commandName.toUpperCase());
+            if (ans == null) throw new NoCommandException();
+            commandHistory.addLast(ans.getName());
+            return ans.execute(commandArg);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ColorEdit.RED_BOLD + "Ошибка\n" + ColorEdit.RESET;
+        } catch (NoCommandException e) {
+            return ColorEdit.RED_BOLD + "Такой команды не существует..." + ColorEdit.RESET;
+        }
+    }
+}
+
+
+/*    public  String executeCommand(String commandName) throws IOException {
         String[] nameAndArgument = commandName.split(" ");
         if (!commandName.equals("")) {
             if (commands.get(nameAndArgument[0]) == null) {
@@ -74,4 +98,4 @@ public class Invoker {
         }
         return null;
     }
-}
+*/

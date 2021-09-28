@@ -6,8 +6,11 @@ import SpaceMarine.SpaceMarine;
 
 import java.util.Map;
 
-public class Show implements CommandWithoutArg {
-    String name = "show";
+public class Show extends AbstractCommand {
+
+    public Show() {
+        super("show", "вывод всех элементов коллекции");
+    }
 
     @Override
     public String execute(Object o) {
@@ -16,10 +19,5 @@ public class Show implements CommandWithoutArg {
         else for (Map.Entry<Integer, SpaceMarine> entry : Collection.getCollection().entrySet())
             res += entry.getValue() +"\n";
         return res;
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 }

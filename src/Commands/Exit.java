@@ -1,18 +1,23 @@
 package Commands;
 
 import Controller.CommandWithoutArg;
+import Exceptions.WrongCommandFormat;
 
-public class Exit implements CommandWithoutArg {
-    String name = "exit";
+public class Exit extends AbstractCommand {
 
-    @Override
-    public String execute(Object o) {
-        System.exit(0);
-        return null;
+    public Exit() {
+        super("exit", "завершение программы без сохранения в файл");
     }
 
     @Override
-    public String getName() {
-        return name;
+    public String execute(Object o) {
+        try {
+            if (o.equals("")) {
+                System.exit(0);
+                return null;
+            } else throw new WrongCommandFormat();
+        } catch (WrongCommandFormat e) {
+            return "Данной команде не нужен аргумент. Проверьте аргументацию\n";
+        }
     }
 }
