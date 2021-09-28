@@ -97,7 +97,7 @@ public class Collection {
             } catch (Exception e) {
             }
         }
-        return (collection.size() == 0) ? "Коллекция пуста." : "Коллекция заполнена. Количество элементов: " + collection.size();
+        return (collection.size() == 0) ? "Коллекция пуста." : "Коллекция заполнена. Количество элементов: " +ColorEdit.YELLOW_BOLD_BRIGHT+ collection.size()+ColorEdit.RESET;
     }
 
 }

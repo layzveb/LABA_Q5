@@ -24,7 +24,7 @@ public class ReaderFromFile {
                 data += scanner.nextLine().trim() + "\n";
             scanner.close();
             WriterToFile.setFilename(filename);
-            Console.write("Файл " + filename + " найден.");
+            Console.write("Файл " +ColorEdit.CYAN_BOLD+ filename +ColorEdit.RESET+ " найден.");
             return data;
         } catch (FileNotFoundException | NullPointerException e) {
             while (filename.trim().equals("") || filename.equals(null)) {
@@ -38,9 +38,17 @@ public class ReaderFromFile {
                             filter.append(i).append(" ");
                         }
                     }
+                    String data = "";
                     filename = filter.toString().trim();
                     WriterToFile.setFilename(filename);
-                    break;
+                    File file = new File(filename);
+                    Scanner scanner = new Scanner(file);
+                    while (scanner.hasNextLine())
+                        data += scanner.nextLine().trim() + "\n";
+                    scanner.close();
+                    WriterToFile.setFilename(filename);
+                    Console.write("Файл " +ColorEdit.CYAN_BOLD+ filename +ColorEdit.RESET+ " найден.");
+                    return data;
                 }
             }
             Console.write("Файл " + ColorEdit.CYAN_BOLD + filename + ColorEdit.RESET + " не найден... \nСоздан новый файл " + ColorEdit.CYAN_BOLD + filename + ColorEdit.RESET + ".");

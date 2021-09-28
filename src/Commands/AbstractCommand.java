@@ -21,6 +21,6 @@ public abstract class AbstractCommand implements CommandWithoutArg, CommandWithO
 
     @Override
     public String toString() {
-        return new StringBuilder().append(ColorEdit.YELLOW_BOLD_BRIGHT).append(" ✧  ").append(name).append(ColorEdit.RESET).append(" ➤ ").append(description).toString();
+        return new StringBuilder().append(ColorEdit.YELLOW_BOLD_BRIGHT).append(" ✧  ").append(name).append(ColorEdit.RESET).append(ColorEdit.BLUE_BRIGHT).append(" ⋯ ").append(ColorEdit.RESET).append(description).toString();
     }
 }
