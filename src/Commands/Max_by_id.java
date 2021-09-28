@@ -13,15 +13,15 @@ public class Max_by_id extends AbstractCommand {
     }
 
     @Override
-    public String execute(Object arg) {
+    public String execute(Object o) {
         try {
-            if (!arg.equals("")) {
+            if (o.equals("")) {
                 if (Collection.getSize() == 0) return ("Коллекция пустая.");
                 else
                     return Collection.getCollection().lastEntry().getValue().toString();
             } else throw new WrongCommandFormat();
         } catch (WrongCommandFormat e) {
-            return "Данной команде не нужен аргумент. Проверьте аргументацию\n";
+            return "Данной команде НЕ НУЖЕН аргумент. Проверьте аргументацию\n";
         }
     }
 }

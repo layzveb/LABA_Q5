@@ -19,7 +19,7 @@ public class History extends AbstractCommand {
         return invoker.history();
             } else throw new WrongCommandFormat();
         } catch (WrongCommandFormat e) {
-            return "Данной команде не нужен аргумент. Проверьте аргументацию\n";
+            return "Данной команде НЕ НУЖЕН аргумент. Проверьте аргументацию\n";
         }
     }
 }

@@ -17,7 +17,7 @@ public class Exit extends AbstractCommand {
                 return null;
             } else throw new WrongCommandFormat();
         } catch (WrongCommandFormat e) {
-            return "Данной команде не нужен аргумент. Проверьте аргументацию\n";
+            return "Данной команде НЕ НУЖЕН аргумент. Проверьте аргументацию\n";
         }
     }
 }
