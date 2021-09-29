@@ -8,7 +8,7 @@ public class ReaderFromFile {
 
     public String readFromFile(String filename) throws FileNotFoundException {
         try {
-            String data = "";
+            StringBuilder data = new StringBuilder();
             filename = filename.trim();
             String[] in = filename.split(" ");
             StringBuilder filter = new StringBuilder();
@@ -21,13 +21,13 @@ public class ReaderFromFile {
             File file = new File(filename);
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine())
-                data += scanner.nextLine().trim() + "\n";
+                data.append(scanner.nextLine().trim()).append("\n");
             scanner.close();
             WriterToFile.setFilename(filename);
             Console.write("Файл " +ColorEdit.CYAN_BOLD+ filename +ColorEdit.RESET+ " найден.");
-            return data;
+            return data.toString();
         } catch (FileNotFoundException | NullPointerException e) {
-            while (filename.trim().equals("") || filename.equals(null)) {
+            while (filename.trim().equals("")) {
                 Console.write(ColorEdit.RED_BOLD + "Вы не указали имя файла.\n" + ColorEdit.RESET + "Введите имя файла:");
                 String newFilename = Console.read();
                 if (!(newFilename.trim().equals(""))) {
@@ -38,17 +38,20 @@ public class ReaderFromFile {
                             filter.append(i).append(" ");
                         }
                     }
-                    String data = "";
+                    StringBuilder data = new StringBuilder();
                     filename = filter.toString().trim();
                     WriterToFile.setFilename(filename);
-                    File file = new File(filename);
-                    Scanner scanner = new Scanner(file);
-                    while (scanner.hasNextLine())
-                        data += scanner.nextLine().trim() + "\n";
-                    scanner.close();
-                    WriterToFile.setFilename(filename);
-                    Console.write("Файл " +ColorEdit.CYAN_BOLD+ filename +ColorEdit.RESET+ " найден.");
-                    return data;
+                    try {
+                        File file = new File(filename);
+                        Scanner scanner = new Scanner(file);
+                        while (scanner.hasNextLine())
+                            data.append(scanner.nextLine().trim()).append("\n");
+                        scanner.close();
+                        Console.write("Файл " + ColorEdit.CYAN_BOLD + filename + ColorEdit.RESET + " найден.");
+                        return data.toString();
+                    }catch (FileNotFoundException r) {
+                        break;
+                    }
                 }
             }
             Console.write("Файл " + ColorEdit.CYAN_BOLD + filename + ColorEdit.RESET + " не найден... \nСоздан новый файл " + ColorEdit.CYAN_BOLD + filename + ColorEdit.RESET + ".");
